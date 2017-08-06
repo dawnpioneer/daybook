@@ -15,6 +15,7 @@ class DaybookCategory {
 
     static constraints = {
         name nullable: false
+        category nullable: false
     }
 
     enum Category {

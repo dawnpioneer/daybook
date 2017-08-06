@@ -1,1 +1,1 @@
-# daybook-api
+# daybook

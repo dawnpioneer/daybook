@@ -1437,11 +1437,9 @@ label,
 a:not(.btn) {
     -webkit-transition: initial;
     transition: initial;
-    text-decoration: underline;
-    color: #969696; }
+    text-decoration: blink; }
 a:not(.btn):hover {
-    text-decoration: underline;
-    color: #70b02b; }
+    text-decoration: blink; }
 a:not(.btn):hover:before {
     -webkit-transform: scaleX(1);
     transform: scaleX(1); }
@@ -2881,3 +2879,5 @@ pre {
 @media (max-width: 767px) {
     .header .header-block-nav .profile-dropdown-menu {
         margin-top: 8px; } }
+
+/* custom */

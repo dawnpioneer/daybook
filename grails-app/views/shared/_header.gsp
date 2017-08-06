@@ -63,11 +63,11 @@
                 </div>
                 <nav class="menu">
                     <ul class="nav metismenu" id="sidebar-menu">
-                        <li class="active">
+                        <li>
                             <a href="/">
                                 <i class="fa fa-home"></i> Dashboard </a>
                         </li>
-                        <li>
+                        <li <g:if test="${selectedMenu in ['daybook','daybookCategory']}">class="active open"</g:if>>
                             <a href="">
                                 <i class="fa fa-book"></i> Daybook
                                 <i class="fa arrow"></i>
@@ -76,7 +76,7 @@
                                 <li>
                                     <a href="/daybook"> Daybook Management </a>
                                 </li>
-                                <li>
+                                <li <g:if test="${selectedMenu == 'daybookCategory'}">class="active"</g:if>>
                                     <a href="/daybookCategory"> Category Management </a>
                                 </li>
                             </ul>

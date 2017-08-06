@@ -9,13 +9,27 @@
             <div class="col-md-12">
                 <div class="card card-block sameheight-item">
                     <div class="form-group">
-                        <label class="control-label">種類</label>
-                        <label class="control-label">${daybookCategory.category.name}</label>
+                        <h5><label class="control-label">種類</label></h5>
+                        ${daybookCategory.category.name}
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label">名稱</label>
-                        <label class="control-label">${daybookCategory.name}</label>
+                        <h5><label class="control-label">名稱</label></h5>
+                        ${daybookCategory.name}
+                    </div>
+
+                    <div class="form-group">
+                        <h5><label class="control-label">建立時間</label></h5>
+                        <g:formatDate format="yyyy-MM-dd HH:mm:ss" date="${daybookCategory.dateCreated}"/>
+                    </div>
+
+                    <div class="form-group">
+                        <h5><label class="control-label">最後編輯時間</label></h5>
+                        <g:formatDate format="yyyy-MM-dd HH:mm:ss" date="${daybookCategory.lastUpdated}"/>
+                    </div>
+
+                    <div class="form-group">
+                        <a href="/daybookCategory" class="btn btn-secondary">回列表</a>
                     </div>
                 </div>
             </div>

@@ -4,17 +4,15 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        def daybookCategories = [
-                [name: 'test 1', category: DaybookCategory.Category.EXPENSE],
-                [name: 'test 2', category: DaybookCategory.Category.EXPENSE],
-                [name: 'test 3', category: DaybookCategory.Category.EXPENSE]
-        ]
-
-        daybookCategories.each {
-            new DaybookCategory(
-                    name: it.name,
-                    category: it.category
-            ).save()
+        (1..30).each {
+            def daybookCategory = new DaybookCategory(
+                    name: "test $it",
+                    category: DaybookCategory.Category.EXPENSE
+            )
+            if (it % 3 == 0 ) {
+                daybookCategory.category = DaybookCategory.Category.INCOME
+            }
+            daybookCategory.save()
         }
 
     }

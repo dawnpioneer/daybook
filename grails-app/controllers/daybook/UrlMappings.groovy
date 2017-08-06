@@ -10,9 +10,6 @@ class UrlMappings {
         }
 
         "/"(view:'/index')
-        "/daybook"(resources: 'daybook')
-        "/daybookCategory"(resources: 'daybookCategory')
-
         "500"(view:'/error')
         "404"(view:'/notFound')
     }
