@@ -1,102 +1,53 @@
-<!doctype html>
-<html class="no-js" lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-<asset:stylesheet src="application.css"/>
-<asset:stylesheet src="vendor.css"/>
-<link rel="stylesheet" type="text/css" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8" />
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Import main.css -->
+    <asset:stylesheet src="application.css"/>
 </head>
 <body>
-<div class="main-wrapper">
-    <div class="app" id="app">
-        <header class="header">
-            <div class="header-block header-block-collapse hidden-lg-up">
-                <button class="collapse-btn" id="sidebar-collapse-btn">
-                    <i class="fa fa-bars"></i>
-                </button>
-            </div>
-            <div class="header-block header-block-search hidden-sm-down">
-                <form role="search">
-                    <div class="input-container">
-                        <i class="fa fa-search"></i>
-                        <input type="search" placeholder="Search">
-                        <div class="underline"></div>
-                    </div>
-                </form>
-            </div>
-            <div class="header-block header-block-nav">
-                <ul class="nav-profile">
-                    <li class="profile dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            <div class="img" style="background-image: url('https://avatars3.githubusercontent.com/u/3959008?v=3&s=40')"> </div>
-                            <span class="name"> John Doe </span>
-                        </a>
-                        <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="#">
-                                <i class="fa fa-user icon"></i> Profile </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fa fa-bell icon"></i> Notifications </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fa fa-gear icon"></i> Settings </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="login.html">
-                                <i class="fa fa-power-off icon"></i> Logout </a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </header>
-        <aside class="sidebar">
-            <div class="sidebar-container">
-                <div class="sidebar-header">
-                    <div class="brand">
-                        <div class="logo">
-                            <span class="l l1"></span>
-                            <span class="l l2"></span>
-                            <span class="l l3"></span>
-                            <span class="l l4"></span>
-                            <span class="l l5"></span>
-                        </div> Daybook Admin </div>
-                </div>
-                <nav class="menu">
-                    <ul class="nav metismenu" id="sidebar-menu">
-                        <li>
-                            <a href="/">
-                                <i class="fa fa-home"></i> Dashboard </a>
-                        </li>
-                        <li <g:if test="${selectedMenu in ['daybook','daybookCategory']}">class="active open"</g:if>>
-                            <a href="">
-                                <i class="fa fa-book"></i> Daybook
-                                <i class="fa arrow"></i>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="/daybook"> Daybook Management </a>
-                                </li>
-                                <li <g:if test="${selectedMenu == 'daybookCategory'}">class="active"</g:if>>
-                                    <a href="/daybookCategory"> Category Management </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-bar-chart"></i> Charts
-                                <i class="fa arrow"></i>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="charts-flot.html"> Flot Charts </a>
-                                </li>
-                                <li>
-                                    <a href="charts-morris.html"> Morris Charts </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </aside>
-        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+<!-- Dropdown Structure -->
+<ul id="dropdown-daybook" class="dropdown-content">
+    <li><a href="#">列表</a></li>
+    <li><a href="#">新增</a></li>
+</ul>
+<ul id="dropdown-category" class="dropdown-content">
+    <li><a href="/daybookCategory">列表</a></li>
+    <li><a href="/daybookCategory/create">新增</a></li>
+</ul>
+<ul id="dropdown-daybook-mobile" class="dropdown-content">
+    <li><a href="#">列表</a></li>
+    <li><a href="#">新增</a></li>
+</ul>
+<ul id="dropdown-category-mobile" class="dropdown-content">
+    <li><a href="/daybookCategory">列表</a></li>
+    <li><a href="/daybookCategory/create">新增</a></li>
+</ul>
+
+<nav class="white" role="navigation">
+    <div class="nav-wrapper container">
+        <a id="logo-container" href="#" class="brand-logo">Daybook</a>
+        <ul class="right hide-on-med-and-down">
+            <li><a class="dropdown-button" href="#" data-activates="dropdown-daybook">記帳本 <i
+                    class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button" href="#" data-activates="dropdown-category">記帳類別<i
+                    class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a href="#">統計圖</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="side-nav">
+            <li><a class="dropdown-button" href="#" data-activates="dropdown-daybook-mobile">記帳本<i
+                    class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a class="dropdown-button" href="#" data-activates="dropdown-category-mobile">記帳類別<i
+                    class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+</nav>

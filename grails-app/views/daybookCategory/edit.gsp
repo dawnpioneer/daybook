@@ -1,35 +1,34 @@
 <g:render template="/shared/header"/>
-<title>Daybook - Edit</title>
-<article class="content forms-page">
-    <div class="title-block">
-        <h1 class="title"><a href="/daybookCategory">帳簿種類</a> > 修改 </h1>
-    </div>
-    <section class="section">
-        <div class="row sameheight-container">
-            <div class="col-md-12">
-                <div class="card card-block sameheight-item">
-                    <div class="title-block">
-                        <h3 class="title"> 修改 </h3>
-                    </div>
-                    <g:form controller="daybookCategory" action="update" method="PUT">
-                        <div class="form-group">
-                            <g:hiddenField name="id" value="${daybookCategory.id}"/>
-                            <g:select name='category' value="${daybookCategory.category}"
-                                      from='${daybook.DaybookCategory.Category}'
-                                      optionValue="name" class="form-control" />
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">名稱</label>
-                            <input type="text" name="name" value="${daybookCategory.name}" class="form-control underlined">
-                        </div>
-                        <div class="form-group">
-                            <a href="/daybookCategory" class="btn btn-secondary">回列表</a>
-                            <button type="submit" class="btn btn-primary"> 儲存 </button>
-                        </div>
-                    </g:form>
-                </div>
+<div class="container">
+    <div class="section center-align">
+        <div class="row">
+            <div class="col s12">
+                <h3>記帳類別 - 修改</h3>
             </div>
         </div>
-    </section>
-</article>
+        <div class="row">
+            <g:form controller="daybookCategory" action="update" method="PUT" class="col s12">
+                <g:hiddenField name="id" value="${daybookCategory.id}"/>
+                <div class="row">
+                    <div class="input-field select col s12">
+                        <g:select name='category' value="${daybookCategory.category}"
+                                  from='${daybook.DaybookCategory.Category}'
+                                  optionValue="name" class="form-control" />
+                        <label>支出 / 收入</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="name" type="text" name="name" value="${daybookCategory.name}" class="validate" required>
+                        <label for="name">名稱</label>
+                    </div>
+                    <div class="col s12">
+                        <button type="submit" class="waves-effect waves-light btn a-button">
+                            <i class="fa fa-save" aria-hidden="true"></i>
+                        </button>
+                        <a href="/daybookCategory" class="waves-effect btn a-button"><i class="fa fa-arrow-left" aria-hidden="true"></i> </a>
+                    </div>
+                </div>
+            </g:form>
+        </div>
+    </div>
+</div>
 <g:render template="/shared/footer"/>

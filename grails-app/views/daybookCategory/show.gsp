@@ -1,39 +1,44 @@
 <g:render template="/shared/header"/>
-<title>Daybook - New</title>
-<article class="content forms-page">
-    <div class="title-block">
-        <h1 class="title"><a href="/daybookCategory">帳簿種類</a> > 檢視</h1>
-    </div>
-    <section class="section">
-        <div class="row sameheight-container">
-            <div class="col-md-12">
-                <div class="card card-block sameheight-item">
-                    <div class="form-group">
-                        <h5><label class="control-label">種類</label></h5>
-                        ${daybookCategory.category.name}
-                    </div>
-
-                    <div class="form-group">
-                        <h5><label class="control-label">名稱</label></h5>
-                        ${daybookCategory.name}
-                    </div>
-
-                    <div class="form-group">
-                        <h5><label class="control-label">建立時間</label></h5>
-                        <g:formatDate format="yyyy-MM-dd HH:mm:ss" date="${daybookCategory.dateCreated}"/>
-                    </div>
-
-                    <div class="form-group">
-                        <h5><label class="control-label">最後編輯時間</label></h5>
-                        <g:formatDate format="yyyy-MM-dd HH:mm:ss" date="${daybookCategory.lastUpdated}"/>
-                    </div>
-
-                    <div class="form-group">
-                        <a href="/daybookCategory" class="btn btn-secondary">回列表</a>
-                    </div>
-                </div>
+<div class="container">
+    <div class="section center-align">
+        <div class="row">
+            <div class="col s12">
+                <h3>記帳類別 - 檢視</h3>
             </div>
         </div>
-    </section>
-</article>
+
+        <div class="row view">
+            <div class="input-field col s12">
+                <input id="categoryName" disabled value="${daybookCategory.category.name}" type="text" class="validate">
+                <label for="categoryName">支出 / 收入</label>
+            </div>
+
+            <div class="input-field col s12">
+                <input id="name" disabled value="${daybookCategory.name}" type="text" class="validate">
+                <label for="name">種類</label>
+            </div>
+
+            <div class="input-field col s12">
+                <input id="dateCreated" disabled
+                       value="<g:formatDate format="yyyy-MM-dd HH:mm:ss" date="${daybookCategory.dateCreated}"/>"
+                       type="text" class="validate">
+                <label for="dateCreated">建立日期</label>
+            </div>
+
+            <div id="lastUpdated" class="input-field col s12">
+                <input disabled
+                       value="<g:formatDate format="yyyy-MM-dd HH:mm:ss" date="${daybookCategory.lastUpdated}"/>"
+                       type="text" class="validate">
+                <label for="lastUpdated">編輯日期</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col s12">
+                <a href="/daybookCategory" class="waves-effect btn a-button"><i class="fa fa-arrow-left"
+                                                                                aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
 <g:render template="/shared/footer"/>
