@@ -47,7 +47,13 @@
                     </tbody>
                 </table>
             </div>
-            <g:paginate controller="daybookCategory" action="index" total="${daybookCategoryCount}"/>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="paginate">
+                    <g:paginate controller="daybookCategory" action="index" total="${daybookCategoryCount}" next="下一頁" prev="上一頁"/>
+                </div>
+            </div>
         </div>
     </div>
 </div>

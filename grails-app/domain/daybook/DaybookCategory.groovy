@@ -29,4 +29,16 @@ class DaybookCategory {
         }
     }
 
+    enum CategorySelection {
+        ALL("全部"),
+        EXPENSE("支出"),
+        INCOME("收入")
+
+        String name
+
+        CategorySelection(String name) {
+            this.name = name
+        }
+    }
+
 }

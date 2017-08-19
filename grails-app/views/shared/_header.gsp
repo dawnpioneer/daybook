@@ -15,16 +15,16 @@
 <body>
 <!-- Dropdown Structure -->
 <ul id="dropdown-daybook" class="dropdown-content">
-    <li><a href="#">列表</a></li>
-    <li><a href="#">新增</a></li>
+    <li><a href="/daybook">列表</a></li>
+    <li><a href="/daybook/create">新增</a></li>
 </ul>
 <ul id="dropdown-category" class="dropdown-content">
     <li><a href="/daybookCategory">列表</a></li>
     <li><a href="/daybookCategory/create">新增</a></li>
 </ul>
 <ul id="dropdown-daybook-mobile" class="dropdown-content">
-    <li><a href="#">列表</a></li>
-    <li><a href="#">新增</a></li>
+    <li><a href="/daybook">列表</a></li>
+    <li><a href="/daybook/create">新增</a></li>
 </ul>
 <ul id="dropdown-category-mobile" class="dropdown-content">
     <li><a href="/daybookCategory">列表</a></li>
@@ -51,3 +51,5 @@
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
 </nav>
+
+<main>

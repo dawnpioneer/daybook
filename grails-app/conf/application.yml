@@ -107,6 +107,7 @@ dataSource:
 environments:
     development:
         dataSource:
+            logSql: true
             dbCreate: create
             url: jdbc:mysql://localhost:3306/daybook_new
     test:
@@ -135,3 +136,20 @@ environments:
                 testOnReturn: false
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+---
+# Custom Settings
+monthList:
+    -
+         "ALL": "全部"
+         "01": "一月"
+         "02": "二月"
+         "03": "三月"
+         "04": "四月"
+         "05": "五月"
+         "06": "六月"
+         "07": "七月"
+         "08": "八月"
+         "09": "九月"
+         "10": "十月"
+         "11": "十一月"
+         "12": "十二月"

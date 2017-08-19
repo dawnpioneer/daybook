@@ -1,26 +1,113 @@
 package daybook
 
-import grails.rest.RestfulController
+import grails.transaction.Transactional
 
-class DaybookController extends RestfulController {
+class DaybookController {
 
-    DaybookController() {
-        super(Daybook)
-    }
+    static responseFormats = ['json', 'xml']
+    final String GET_YEARS_SQL = "select distinct date_format(d.recordDate, '%Y') as year from Daybook as d order by year"
 
     def index() {
         params.max = params?.max ?: 10
         params.offset = params?.offset ?: 0
+
+        def queryParams = [:]
+
+        StringBuffer sql = new StringBuffer()
+        sql.append("from Daybook as d where 1 = 1")
+        if (params.year && params.year != "ALL") {
+            sql.append(" and date_format(d.recordDate, '%Y') = :year")
+            queryParams.put("year", params.year)
+        }
+        if (params.month && params.month != "ALL") {
+            sql.append(" and date_format(d.recordDate, '%m') = :month")
+            queryParams.put("month", params.month)
+        }
+        if (params.category && params.category != "ALL") {
+            sql.append(" and d.daybookCategory.category = :category")
+            queryParams.put("category", DaybookCategory.Category.valueOf(params.category))
+        }
+        if (params.daybookCategory && params.daybookCategory != "ALL") {
+            sql.append(" and d.daybookCategory = :daybookCategory")
+            queryParams.put("daybookCategory", DaybookCategory.findById(params.daybookCategory as Long))
+        }
+        if (params.title) {
+            sql.append(" and d.title like :title")
+            queryParams.put("title", "%${params.title}%")
+        }
+        if (params.amount) {
+            sql.append(" and d.amount >= :amount")
+            queryParams.put("amount", params.amount as Integer)
+        }
+        sql.append(" order by d.recordDate desc, d.id desc")
+
         [
-                daybooks: Daybook.list(params),
-                daybookCount: Daybook.count(),
-                max: params.max,
-                offset: params.offset
+                daybooks    : Daybook.findAll(sql.toString(), queryParams, [max: params.max, offset: params.offset]),
+                daybookCount: Daybook.findAll(sql.toString(), queryParams).size(),
+                yearList    : getYearList(),
+                monthList   : grailsApplication.config.getProperty("monthList", Map),
+                params: params
         ]
     }
 
-    def save() {
+    def show() {
+        if (params.id) {
+            [daybook: Daybook.get(params.id)]
+        }
+    }
 
+    def create() {
+
+    }
+
+    @Transactional
+    def save() {
+        def daybook = new Daybook(params)
+        daybook.save flush: true, failOnError: true
+
+        redirect action: "show", id: daybook.id
+    }
+
+    def edit() {
+        if (params.id) {
+            [daybook: Daybook.get(params.id)]
+        }
+    }
+
+    @Transactional
+    def update() {
+        def daybook = Daybook.findById(params.id)
+        daybook.daybookCategory = params.daybookCategory
+        daybook.title = params.title
+        daybook.amount = params.amount
+        daybook.recordDate = params.recordDate
+        daybook.comment = comment
+        daybook.save flush: true, failOnError: true
+
+        redirect action: "show", id: daybook.id
+    }
+
+    @Transactional
+    def delete() {
+        def daybook = Daybook.findById(params.id)
+        daybook.delete flush: true, failOnError: true
+
+        redirect action: "index", method: "GET"
+    }
+
+    def getDaybookCategories() {
+        def daybookCategories =  params.category != "ALL" ? DaybookCategory.findAllByCategory(params.category) : DaybookCategory.findAll()
+        daybookCategories.sort{ it.id as Integer }
+        respond daybookCategories
+    }
+
+    def getYearList() {
+        def yearList = ["ALL": "全部"]
+        def yearListFromDaybook = (Daybook.executeQuery(GET_YEARS_SQL))
+        yearListFromDaybook.each {
+            yearList.put(it as String, it as String)
+        }
+        return yearList
     }
 
 }

@@ -3,35 +3,30 @@ package daybook
 import grails.rest.RestfulController
 import grails.transaction.Transactional
 
-class DaybookCategoryController extends ApplicationController {
+class DaybookCategoryController {
 
     static responseFormats = ['json', 'xml']
-    static selectedMenu = "daybookCategory"
-
-    DaybookCategoryController() {
-        super(selectedMenu)
-    }
 
     def index() {
         params.max = params?.max ?: 10
         params.offset = params?.offset ?: 0
 
-        returnReference([
+        [
                 daybookCategories: DaybookCategory.list(params),
                 daybookCategoryCount: DaybookCategory.count(),
                 max: params.max,
                 offset: params.offset
-        ])
+        ]
     }
 
     def show() {
         if (params.id) {
-            returnReference([daybookCategory: DaybookCategory.get(params.id)])
+            [daybookCategory: DaybookCategory.get(params.id)]
         }
     }
 
     def create() {
-        returnReference(null)
+
     }
 
     @Transactional
@@ -44,7 +39,7 @@ class DaybookCategoryController extends ApplicationController {
 
     def edit() {
         if (params.id) {
-            returnReference([daybookCategory: DaybookCategory.get(params.id)])
+            [daybookCategory: DaybookCategory.get(params.id)]
         }
     }
 

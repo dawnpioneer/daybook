@@ -1,46 +1,53 @@
 <%@ page import="daybook.DaybookCategory" %>
-<g:render template="/shared/header"/>
-<title>Daybook - New</title>
-<article class="content forms-page">
-    <div class="title-block">
-        <h1 class="title"> 帳簿 - 新增 </h1>
-    </div>
-    <section class="section">
-        <div class="row sameheight-container">
-            <div class="col-md-12">
-                <div class="card card-block sameheight-item">
-                    <div class="title-block">
-                        <h3 class="title"> 新增 </h3>
-                    </div>
-                    <form role="form" action="save" method="post">
-                        <div class="form-group">
-                            <select class="form-control">
-                                <g:each in="${daybook.DaybookCategory.CategoryType}" var="categoryType">
-                                    <option value="${categoryType.value}">${categoryType}</option>
-                                </g:each>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">標題</label>
-                            <input type="text" name="title" class="form-control underlined"> </div>
-                        <div class="form-group">
-                            <label class="control-label">金額</label>
-                            <input type="text" name="amount" class="form-control underlined"> </div>
-                        <div class="form-group">
-                            <label class="control-label">記帳日期</label>
-                            <g:datePicker name="recordDate" value="${new Date()}" noSelection="['':'請選擇']"/>
-                            <input type="text" name="recordDate" class="form-control underlined" placeholder="Placeholder text"> </div>
-                        <div class="form-group">
-                            <label class="control-label">備註</label>
-                            <textarea rows="3" name="comment" class="form-control underlined"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary"> Submit </button>
-                        </div>
-                    </form>
-                </div>
+<div class="container">
+    <div class="section center-align">
+        <div class="row">
+            <div class="col s12">
+                <h3>記帳本 - 新增</h3>
             </div>
         </div>
-    </section>
-</article>
-<g:render template="/shared/footer"/>
+        <div class="row">
+            <form class="col s12" action="javascript:alert('submit success!')">
+                <div class="row">
+                    <div class="input-field select col s12">
+                        <g:select name='category' value="${key}"
+                                  from='${DaybookCategory.Category}'
+                                  optionValue="name" class="form-control" />
+                        <label>支出 / 收入</label>
+                    </div>
+                    <div class="input-field select col s12">
+                        <select>
+                            <option value="1">餐費</option>
+                            <option value="2">交通費</option>
+                        </select>
+                        <label>種類</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input name="first_name" type="text" class="validate" required>
+                        <label for="first_name">名稱</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input type="text" class="validate" pattern="^\d+$" required>
+                        <label for="first_name" data-error="請填寫正整數">金額</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="recordDate" name="recordDate" type="date" class="datepicker" required>
+                        <label for="recordDate" data-error="請填寫">記帳日期</label>
+                    </div>
+                    <div class="col s12">
+                        <button type="submit" class="waves-effect waves-light btn a-button">
+                            <i class="fa fa-save" aria-hidden="true"></i>
+                        </button>
+                        <a class="waves-effect btn a-button"><i class="fa fa-arrow-left" aria-hidden="true"></i> </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        datepickerValidate();
+    });
+</script>
