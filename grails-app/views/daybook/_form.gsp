@@ -30,7 +30,8 @@
                         <label for="amount" data-error="請填寫正整數">金額</label>
                     </div>
                     <div class="input-field col s12">
-                        <input id="recordDate" name="recordDate" value="${daybook?.recordDate}" type="date" class="datepicker" required>
+                        <input id="recordDate" name="recordDate" value="<g:formatDate format="yyyy-MM-dd" date="${daybook?.recordDate}"/>"
+                                type="date" class="datepicker" required>
                         <label for="recordDate" data-error="請填寫">記帳日期</label>
                     </div>
                     <div class="input-field col s12">
