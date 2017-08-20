@@ -62,6 +62,7 @@ class DaybookController {
 
     @Transactional
     def save() {
+        params.recordDate = new Date().parse('yyyy-MM-dd', params.recordDate as String) // Transfer string to date
         def daybook = new Daybook(params)
         daybook.save flush: true, failOnError: true
 
@@ -77,11 +78,11 @@ class DaybookController {
     @Transactional
     def update() {
         def daybook = Daybook.findById(params.id)
-        daybook.daybookCategory = params.daybookCategory
+        daybook.daybookCategory = DaybookCategory.findById(params.daybookCategory as Long)
         daybook.title = params.title
-        daybook.amount = params.amount
-        daybook.recordDate = params.recordDate
-        daybook.comment = comment
+        daybook.amount = params.amount as Integer
+        daybook.recordDate = new Date().parse('yyyy-MM-dd', params.recordDate as String)
+        daybook.comment = params.comment
         daybook.save flush: true, failOnError: true
 
         redirect action: "show", id: daybook.id

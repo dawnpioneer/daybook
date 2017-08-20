@@ -31,10 +31,6 @@ nav ul a,nav .brand-logo {
 }
 
 /* Form Templates */
-.search-form .input-field {
-    margin-top: 0px;
-}
-
 .search-input {
     margin-top: -10px;
 }
@@ -77,12 +73,13 @@ main {
 footer {
     position: fixed;
     width: 100%;
-    bottom: 0px;
+    bottom: 0;
 }
 
 /* Paginate Style */
 .paginate {
     padding-bottom: 20px;
+    margin-top: 10px;
 }
 
 .step {
@@ -151,7 +148,7 @@ footer {
 }
 
 td {
-    padding: 8px 5px;
+    padding: 5px 5px;
 }
 
 /* Custom Font Size */

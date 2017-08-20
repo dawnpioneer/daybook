@@ -7,8 +7,9 @@
             </div>
 
             <div class="col s12 right-align">
-                <a href="/daybookCategory/create" class="waves-effect waves-light btn"><i class="fa fa-plus"
-                                                                                          aria-hidden="true"></i></a>
+                <a href="/daybookCategory/create" class="waves-effect waves-light btn">
+                    <i class="fa fa-plus"  aria-hidden="true"></i>
+                </a>
             </div>
         </div>
 

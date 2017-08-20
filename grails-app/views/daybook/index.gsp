@@ -1,3 +1,4 @@
+<%@ page import="daybook.DaybookCategory" %>
 <g:render template="/shared/header"/>
 <div class="container">
     <div class="section center-align">
@@ -8,15 +9,9 @@
         </div>
 
         <div class="row">
-            <div class="col s12 right-align">
-                <a class="waves-effect waves-light btn"><i class="fa fa-plus" aria-hidden="true"></i></a>
-            </div>
-        </div>
-
-        <div class="row">
-            <g:form controller="daybook" action="index" class="col s12 search-form">
+            <g:form controller="daybook" action="index" class="col s12">
                 <div class="row">
-                    <div class="input-field select col m3 s6">
+                    <div class="input-field select col m1 s6">
                         <g:select name='year'
                                   from='${yearList.entrySet()}'
                                   value="${params.year}"
@@ -25,7 +20,7 @@
                         <label>年</label>
                     </div>
 
-                    <div class="input-field select col m3 s6">
+                    <div class="input-field select col m1 s6">
                         <g:select name='month'
                                   from='${monthList.entrySet()}'
                                   value="${params.month}"
@@ -34,16 +29,16 @@
                         <label>月</label>
                     </div>
 
-                    <div class="input-field select col m3 s6">
+                    <div class="input-field select col m1 s6">
                         <g:select name='category'
-                                  from='${daybook.DaybookCategory.CategorySelection}'
+                                  from='${DaybookCategory.CategorySelection}'
                                   value="${params.category}"
                                   optionValue="name"
                                   class="form-control"/>
                         <label>支出 / 收入</label>
                     </div>
 
-                    <div class="input-field select col m3 s6">
+                    <div class="input-field select col m2 s6">
                         <g:select name='daybookCategory'
                                   from='["ALL": "全部"]'
                                   value="${params.daybookCategory}"
@@ -52,22 +47,25 @@
                         <label>種類</label>
                     </div>
 
-                    <div class="input-field col m5 s4">
+                    <div class="input-field col m2 s6">
                         <input type="text" id="autocomplete-input" name="title" value="${params.title}" class="autocomplete"> <label
                             for="autocomplete-input">搜尋名稱</label>
                     </div>
 
-                    <div class="input-field col m5 s4">
+                    <div class="input-field col m2 s6">
                         <input type="text" name="amount" value="${params.amount}"> <label>多少金額以上</label>
                     </div>
 
-                    <div class="input-field col m1 s2">
+                    <div class="input-field col m1 s4">
                         <button type="submit" class="waves-effect btn a-button">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                     </div>
-                    <div class="input-field col m1 s2">
+                    <div class="input-field col m1 s4">
                         <a href="javascript:clear();" class="waves-effect btn a-button"><i class="fa fa-undo" aria-hidden="true"></i> </a>
+                    </div>
+                    <div class="input-field col m1 s4">
+                        <a href="/daybook/create" class="waves-effect waves-light btn"><i class="fa fa-plus" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </g:form>
@@ -129,12 +127,12 @@
 <script>
     $(document).ready(function(){
         if ($("[name=category]").val() !== "ALL") {
-            updateDaybookCategories();
+            updateDaybookCategories('${params.daybookCategory}', true);
         }
     });
 
     $("[name=category]").change(function () {
-        updateDaybookCategories();
+        updateDaybookCategories(null , true);
     });
 
     $("[name=year]").change(function () {
@@ -144,21 +142,6 @@
             $("[name=month]").prop('disabled', false);
         }
     });
-
-    function updateDaybookCategories() {
-        let daybookCategorySelect = $('[name=daybookCategory]');
-        let categorySelect = $("[name=category]");
-        daybookCategorySelect.html('<option value="ALL">全部</option>');
-        if (categorySelect.val() !== "ALL") {
-            $.get("/daybook/getDaybookCategories", {category: categorySelect.val()}).done(function (data) {
-                $.each(data, function (index, object) {
-                    daybookCategorySelect.append('<option value="' + object.id + '">' + object.name + '</option>');
-                });
-                daybookCategorySelect.material_select();
-            });
-        }
-        daybookCategorySelect.material_select();
-    }
 
     function clear() {
         $("[name=title]").val("");

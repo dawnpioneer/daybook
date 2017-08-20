@@ -1,4 +1,4 @@
-// Initial Settings
+// ================================= Initial Settings - Start =================================
 $(document).ready(function(){
     $('.button-collapse').sideNav();
     $(".dropdown-button").dropdown({
@@ -36,8 +36,9 @@ $(document).ready(function(){
         scrollOffset:80
     });
 });
+// ================================= Initial Settings - End =================================
 
-// Chart Extensions
+// ================================= Chart Extensions - Start =================================
 /**
  * draw all charts
  * @param colorList
@@ -177,8 +178,9 @@ function initChart() {
         }
     });
 }
+// ================================= Chart Extensions - End =================================
 
-//Date Picker Validation Extensions
+// ================================= Date Picker Validation Extensions - Start =================================
 /**
  * validate all datepicker from the form
  * @param formId - form's id, if null then select by $('form')
@@ -224,3 +226,35 @@ function checkDate(datepicker) {
         return true;
     }
 }
+// ================================= Date Picker Validation Extensions - End =================================
+
+// ================================= Select Value Change Extensions - Start =================================
+/**
+ * get daybook categories selection data by category
+ * @param selectedValue - set the value to selected status
+ * @param showAllOption - show the "ALL" option
+ */
+function updateDaybookCategories(selectedValue, showAllOption) {
+    let daybookCategorySelect = $('[name=daybookCategory]');
+    let categorySelect = $("[name=category]");
+
+    if (showAllOption === true) {
+        daybookCategorySelect.html('<option value="ALL">全部</option>');
+    } else {
+        daybookCategorySelect.html('');
+    }
+
+    if (categorySelect.val() !== "ALL") {
+        $.get("/daybook/getDaybookCategories", {category: categorySelect.val()}).done(function (data) {
+            $.each(data, function (index, object) {
+                daybookCategorySelect.append('<option value="' + object.id + '">' + object.name + '</option>');
+            });
+            if (selectedValue !== null && selectedValue !== '') {
+                daybookCategorySelect.val(selectedValue);
+            }
+            daybookCategorySelect.material_select();
+        });
+    }
+    daybookCategorySelect.material_select();
+}
+// ================================= Select Value Change Extensions - End =================================

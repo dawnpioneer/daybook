@@ -18,6 +18,7 @@ class Daybook {
         amount nullable: false
         recordDate nullable: false
         daybookCategory nullable: false
+        comment nullable: true
     }
 
 //    static mapping = {

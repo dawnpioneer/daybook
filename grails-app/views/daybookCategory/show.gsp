@@ -25,8 +25,8 @@
                 <label for="dateCreated">建立日期</label>
             </div>
 
-            <div id="lastUpdated" class="input-field col s12">
-                <input disabled
+            <div class="input-field col s12">
+                <input id="lastUpdated" disabled
                        value="<g:formatDate format="yyyy-MM-dd HH:mm:ss" date="${daybookCategory.lastUpdated}"/>"
                        type="text" class="validate">
                 <label for="lastUpdated">編輯日期</label>
