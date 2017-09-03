@@ -44,7 +44,7 @@
                     class="material-icons right">arrow_drop_down</i></a></li>
             <li><a class="dropdown-button" href="#" data-activates="dropdown-category">記帳類別<i
                     class="material-icons right">arrow_drop_down</i></a></li>
-            <li><a href="#">統計圖</a></li>
+            <li><a href="/chart">統計圖</a></li>
         </ul>
 
         <ul id="nav-mobile" class="side-nav">

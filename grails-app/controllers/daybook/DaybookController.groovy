@@ -2,10 +2,9 @@ package daybook
 
 import grails.transaction.Transactional
 
-class DaybookController {
+class DaybookController extends BaseController {
 
     static responseFormats = ['json', 'xml']
-    final String GET_YEARS_SQL = "select distinct date_format(d.recordDate, '%Y') as year from Daybook as d order by year"
 
     def index() {
         params.max = params?.max ?: 10
@@ -100,15 +99,6 @@ class DaybookController {
         def daybookCategories =  params.category != "ALL" ? DaybookCategory.findAllByCategory(params.category) : DaybookCategory.findAll()
         daybookCategories.sort{ it.id as Integer }
         respond daybookCategories
-    }
-
-    def getYearList() {
-        def yearList = ["ALL": "全部"]
-        def yearListFromDaybook = (Daybook.executeQuery(GET_YEARS_SQL))
-        yearListFromDaybook.each {
-            yearList.put(it as String, it as String)
-        }
-        return yearList
     }
 
 }

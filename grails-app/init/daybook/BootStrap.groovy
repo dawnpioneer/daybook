@@ -5,7 +5,7 @@ class BootStrap {
     def init = { servletContext ->
         List<DaybookCategory> daybookCategoryList = []
 
-        (1..15).each {
+        (1..8).each {
             def daybookCategory = new DaybookCategory(
                     name: "test $it",
                     category: DaybookCategory.Category.EXPENSE
@@ -20,11 +20,11 @@ class BootStrap {
         def start = Date.parse('yyyy-MM-dd', '2014-01-01')
         def end = Date.parse('yyyy-MM-dd', '2017-08-17')
 
-        (1..200).each {
+        (1..500).each {
             def daybook = new Daybook(
-                    daybookCategory: daybookCategoryList.get(new Random().nextInt(14)),
+                    daybookCategory: daybookCategoryList.get(new Random().nextInt(7)),
                     title: "daybook $it",
-                    amount: it * 100,
+                    amount: Math.abs(new Random().nextInt() % 20000 + 5000),
                     recordDate: randomDate(start..end),
                     comment: "comment $it"
             )

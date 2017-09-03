@@ -64,7 +64,7 @@ function drawCharts(colorList, monthList, typeList, typeAmountList, typeAmountPe
     var options = [
         {selector: '#doughnut-chart', offset: 200, callback: function(el) {
             Materialize.fadeInImage($(el));
-            drawChart(doughnutCtx, "doughnut", "支出項目圓形圖", typeList, typeAmountList, colorList, null, true,  false);
+            drawChart(doughnutCtx, "doughnut", "支出項目圓形圖", typeList, typeAmountList, colorList, null, false,  false);
         } },
         {selector: '#doughnut-percent-chart', offset: 300, callback: function(el) {
             Materialize.fadeInImage($(el));
@@ -76,7 +76,7 @@ function drawCharts(colorList, monthList, typeList, typeAmountList, typeAmountPe
         } },
         {selector: '#line-chart', offset: 300, callback: function(el) {
             Materialize.fadeInImage($(el));
-            drawChart(lineChartCtx, "line", "年度月別支出曲線圖", monthList, monthAmountList, colorList[0], "支出", false, false);
+            drawChart(lineChartCtx, "line", "年度月別支出曲線圖", monthList, monthAmountList, colorList[0], "支出", true, false);
         } }
     ];
     Materialize.scrollFire(options);
