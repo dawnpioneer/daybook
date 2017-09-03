@@ -45,7 +45,7 @@ class DaybookController extends BaseController {
                 daybookCount: Daybook.findAll(sql.toString(), queryParams).size(),
                 yearList    : getYearList(),
                 monthList   : grailsApplication.config.getProperty("monthList", Map),
-                params: params
+                params      : params
         ]
     }
 
@@ -96,8 +96,8 @@ class DaybookController extends BaseController {
     }
 
     def getDaybookCategories() {
-        def daybookCategories =  params.category != "ALL" ? DaybookCategory.findAllByCategory(params.category) : DaybookCategory.findAll()
-        daybookCategories.sort{ it.id as Integer }
+        def daybookCategories = params.category != "ALL" ? DaybookCategory.findAllByCategory(params.category) : DaybookCategory.findAll()
+        daybookCategories.sort { it.id as Integer }
         respond daybookCategories
     }
 

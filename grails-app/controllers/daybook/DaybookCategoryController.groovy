@@ -11,11 +11,20 @@ class DaybookCategoryController {
         params.max = params?.max ?: 10
         params.offset = params?.offset ?: 0
 
+        def queryParams = [:]
+        StringBuffer sql = new StringBuffer()
+        sql.append("from DaybookCategory as dc where 1 = 1")
+
+        if (params.name) {
+            sql.append(" and dc.name like :name")
+            queryParams.put("name", "%${params.name}%")
+        }
+        sql.append(" order by dc.id")
+
         [
-                daybookCategories: DaybookCategory.list(params),
-                daybookCategoryCount: DaybookCategory.count(),
-                max: params.max,
-                offset: params.offset
+                daybookCategories   : DaybookCategory.findAll(sql.toString(), queryParams, [max: params.max, offset: params.offset]),
+                daybookCategoryCount: DaybookCategory.findAll(sql.toString(), queryParams).size(),
+                params              : params
         ]
     }
 
@@ -58,7 +67,7 @@ class DaybookCategoryController {
         def daybookCategory = DaybookCategory.findById(params.id)
         daybookCategory.delete flush: true, failOnError: true
 
-        redirect action:"index", method:"GET"
+        redirect action: "index", method: "GET"
     }
 
 }

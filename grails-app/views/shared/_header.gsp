@@ -38,7 +38,7 @@
 
 <nav class="white" role="navigation">
     <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="brand-logo">Daybook</a>
+        <a id="logo-container" href="/" class="brand-logo">Daybook</a>
         <ul class="right hide-on-med-and-down">
             <li><a class="dropdown-button" href="#" data-activates="dropdown-daybook">記帳本 <i
                     class="material-icons right">arrow_drop_down</i></a></li>

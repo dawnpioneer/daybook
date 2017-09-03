@@ -5,7 +5,7 @@ class BootStrap {
     def init = { servletContext ->
         List<DaybookCategory> daybookCategoryList = []
 
-        (1..8).each {
+        (1..50).each {
             def daybookCategory = new DaybookCategory(
                     name: "test $it",
                     category: DaybookCategory.Category.EXPENSE
