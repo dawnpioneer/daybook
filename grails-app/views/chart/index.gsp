@@ -32,7 +32,6 @@
                                   class="form-control"/>
                         <label>年</label>
                     </div>
-
                     <div class="input-field select col m5 s12">
                         <g:select name='month'
                                   from='${monthList.entrySet()}'
@@ -41,19 +40,29 @@
                                   class="form-control"/>
                         <label>月</label>
                     </div>
-
                     <div class="input-field col m1 s12">
                         <button type="submit" class="waves-effect waves-light btn a-button">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                     </div>
+                    <g:hiddenField name="exceptTypeList" value="${params?.exceptTypeList}"/>
                 </g:form>
             </div>
         </div>
 
         <div class="row">
             <div class="col m8 offset-m2 s12">
-                <g:if test="${isNothing}">
+                <g:each in="${checkboxTypeList}" var="typeMap">
+                    <input type="checkbox" class="filled-in" id="${typeMap.get("id")}" <g:if test="${typeMap.get("checked")}">checked</g:if>/>
+                    <label for="${typeMap.get("id")}" style="padding-left: 24px">${typeMap.get("name")}</label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </g:each>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col m8 offset-m2 s12">
+                <g:if test="${isEmpty}">
                     <h5 style="color:red">這個月份並沒有資料！</h5>
                 </g:if>
                 <h5 class="left-align">支出項目圓餅圖</h5>
@@ -73,12 +82,21 @@
         // set all needed list
         var colorList = ${colorList};
         var monthList = ${monthStringList};
-        var typeList = ${typeList};
-        var typeAmountList = ${typeAmountList}; // count should be same as the type list
-        var typeAmountPercentList = ${typeAmountPercentList}; // count should be same as the type list
+        var typeStringList = ${typeStringList};
+        var typeAmountList = ${typeAmountList}; // count should be same as the typeStringList
+        var typeAmountPercentList = ${typeAmountPercentList}; // count should be same as the typeStringList
         var monthAmountList = ${monthAmountList};
         // draw all charts
-        drawCharts(colorList, monthList, typeList, typeAmountList, typeAmountPercentList, monthAmountList);
+        drawCharts(colorList, monthList, typeStringList, typeAmountList, typeAmountPercentList, monthAmountList);
+
+        $("[type=checkbox]").change(function() {
+            let exceptTypeList = "";
+            $("input:checkbox:not(:checked)").each(function() {
+                exceptTypeList += this.id + ',';
+            });
+            exceptTypeList = exceptTypeList.substr(0, exceptTypeList.length-1);
+            $("[name='exceptTypeList']").val(exceptTypeList);
+        });
     });
 </script>
 <g:render template="/shared/footer"/>
