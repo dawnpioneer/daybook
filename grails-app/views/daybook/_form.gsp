@@ -31,11 +31,11 @@
                     </div>
                     <div class="col s12 left-align">
                         <label for="recordDate" class="label-font">記帳日期</label>
-                        <input id="recordDate" name="recordDate" value="<g:formatDate format="yyyy-MM-dd" date="${daybook?.recordDate}"/>"
+                        <input id="recordDate" name="recordDate" value="<g:formatDate format="yyyy-MM-dd" date="${defaultDate ? defaultDate : daybook?.recordDate}"/>"
                                 type="date" class="datepicker" required>
                     </div>
                     <div class="input-field col s12">
-                        <textarea id="comment" value="${daybook?.comment}" class="materialize-textarea"></textarea>
+                        <textarea id="comment" name="comment" class="materialize-textarea"></textarea>
                         <label for="comment">備註</label>
                     </div>
                     <div class="col s12">
@@ -53,6 +53,7 @@
     $(document).ready(function() {
         datepickerValidate();
         updateDaybookCategories(null, false);
+        $("#comment").val('${daybook?.comment}');
     });
 
     $("[name=category]").change(function () {

@@ -64,6 +64,10 @@ nav ul a,nav .brand-logo {
     color: black;
 }
 
+.view textarea:not(.browser-default):disabled {
+    color: black;
+}
+
 .datepicker-label {
     position: relative;
     margin-top: 1rem;

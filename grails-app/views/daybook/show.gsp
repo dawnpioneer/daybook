@@ -36,6 +36,11 @@
             </div>
 
             <div class="input-field col s12">
+                <textarea id="comment" name="comment" class="materialize-textarea" disabled></textarea>
+                <label for="comment">備註</label>
+            </div>
+
+            <div class="input-field col s12">
                 <input id="dateCreated" disabled
                        value="<g:formatDate format="yyyy-MM-dd HH:mm:ss" date="${daybook.dateCreated}"/>"
                        type="text" class="validate">
@@ -58,3 +63,8 @@
     </div>
 </div>
 <g:render template="/shared/footer"/>
+<script>
+    $(document).ready(function() {
+        $("#comment").val('${daybook?.comment}');
+    });
+</script>
