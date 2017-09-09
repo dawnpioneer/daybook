@@ -108,7 +108,7 @@ environments:
         dataSource:
             logSql: true
             dbCreate: none
-            url: jdbc:mysql://localhost:3306/daybook_new
+            url: jdbc:mysql://localhost:3306/daybook
     test:
         dataSource:
             dbCreate: none
