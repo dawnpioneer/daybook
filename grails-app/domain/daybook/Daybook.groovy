@@ -13,6 +13,10 @@ class Daybook {
 
     static belongsTo = [daybookCategory: DaybookCategory]
 
+    static mapping = {
+        version false
+    }
+
     static constraints = {
         title nullable: false
         amount nullable: false

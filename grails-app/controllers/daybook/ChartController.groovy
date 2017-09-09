@@ -17,7 +17,7 @@ class ChartController extends BaseController {
         def recordDateYear = year
 
         // get typeList, typeAmountList, typeAmountPercentList
-        def daybookByTypeList = getNativeSqlInstance().rows(getDaybookByTypeListSQL(year, month), [recordDate: recordDate])
+        def daybookByTypeList = getNativeSqlInstance().rows(getDaybookByTypeListSQL(month), [recordDate: recordDate])
         def typeList = [], typeAmountList = [], typeAmountPercentList = []
         def totalAmount = 0
 
@@ -54,7 +54,7 @@ class ChartController extends BaseController {
 
     }
 
-    def getDaybookByTypeListSQL(year, month) {
+    def getDaybookByTypeListSQL(month) {
         def sql = """
          SELECT dc.NAME, 
                 dt.totalamount 

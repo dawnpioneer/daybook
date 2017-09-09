@@ -8,7 +8,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row no-margin-bottom">
             <g:form controller="daybook" action="index" class="col s12">
                 <div class="row">
                     <div class="input-field select col m1 s6">
@@ -114,11 +114,18 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row no-margin-bottom">
             <div class="col s12">
                 <div class="paginate">
                     <g:paginate controller="daybook" action="index" total="${daybookCount}" next="下一頁" prev="上一頁" params="${params}"/>
                 </div>
+            </div>
+        </div>
+
+        <div class="row no-margin-bottom">
+            <div class="col s12 left-align">
+                <hr>
+                累計總支出為 ${totalAmount}元
             </div>
         </div>
     </div>

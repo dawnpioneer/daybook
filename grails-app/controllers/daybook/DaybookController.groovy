@@ -7,6 +7,13 @@ class DaybookController extends BaseController {
     static responseFormats = ['json', 'xml']
 
     def index() {
+        if (!params.year) {
+            params.year = new Date().format("yyyy")
+        }
+        if (!params.month) {
+            params.month = new Date().format("MM")
+        }
+
         params.max = params?.max ?: 10
         params.offset = params?.offset ?: 0
 
@@ -40,12 +47,23 @@ class DaybookController extends BaseController {
         }
         sql.append(" order by d.recordDate desc, d.id desc")
 
+        def daybookList = Daybook.findAll(sql.toString(), queryParams)
+        def totalAmount = 0
+        daybookList.each {
+            if (it.daybookCategory.category == DaybookCategory.Category.INCOME) {
+                totalAmount += it.amount
+            } else if (it.daybookCategory.category == DaybookCategory.Category.EXPENSE) {
+                totalAmount -= it.amount
+            }
+        }
+
         [
                 daybooks    : Daybook.findAll(sql.toString(), queryParams, [max: params.max, offset: params.offset]),
-                daybookCount: Daybook.findAll(sql.toString(), queryParams).size(),
+                daybookCount: daybookList.size(),
                 yearList    : getYearList(),
                 monthList   : grailsApplication.config.getProperty("monthList", Map),
-                params      : params
+                params      : params,
+                totalAmount: totalAmount
         ]
     }
 
