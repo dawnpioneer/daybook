@@ -74,7 +74,7 @@ class DaybookController extends BaseController {
     }
 
     def create() {
-
+        [defaultDate: new Date()]
     }
 
     @Transactional
