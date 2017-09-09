@@ -31,7 +31,6 @@ endpoints:
     enabled: false
     jmx:
         enabled: true
-
 ---
 grails:
     mime:
@@ -108,7 +107,7 @@ environments:
     development:
         dataSource:
             logSql: true
-            dbCreate: create
+            dbCreate: none
             url: jdbc:mysql://localhost:3306/daybook_new
     test:
         dataSource:
