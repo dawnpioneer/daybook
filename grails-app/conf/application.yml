@@ -108,15 +108,15 @@ environments:
         dataSource:
             logSql: true
             dbCreate: none
-            url: jdbc:mysql://localhost:3306/daybook
+            url: jdbc:mysql://localhost:3306/daybook?useUnicode=true&characterEncoding=UTF-8
     test:
         dataSource:
             dbCreate: none
-            url: jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            url: jdbc:mysql://localhost:3306/daybook?useUnicode=true&characterEncoding=UTF-8
     production:
         dataSource:
             dbCreate: none
-            url: jdbc:h2:./prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+            url: jdbc:mysql://localhost:3306/daybook?useUnicode=true&characterEncoding=UTF-8
             properties:
                 jmxEnabled: true
                 initialSize: 5

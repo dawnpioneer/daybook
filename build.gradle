@@ -40,12 +40,10 @@ dependencies {
     compile "org.hibernate:hibernate-ehcache:5.1.3.Final"
     console "org.grails:grails-console"
 
-    // additional
-    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
-
     profile "org.grails.profiles:web"
     runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.14.1"
     runtime "com.h2database:h2"
+    runtime 'mysql:mysql-connector-java:5.1.29' // additional
     testCompile "org.grails:grails-plugin-testing"
     testCompile "org.grails.plugins:geb"
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
@@ -59,6 +57,6 @@ bootRun {
 
 
 assets {
-    minifyJs = true
-    minifyCss = true
+    minifyJs = false
+    minifyCss = false
 }
