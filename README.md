@@ -7,12 +7,6 @@
   - 記帳類別 - 基本增篩改查
   - 資料圖表 - 包含圓餅圖、長條圖、年支出曲線圖
 
-## 畫面
-![](https://imgur.com/iRMoHtz.png)
-![](https://imgur.com/KTn0AKQ.png)
-![](https://imgur.com/5elD6QR.png)
-![](https://imgur.com/ZUUNTBR.png)
-
 ## 安裝
 1. 安裝Mysql資料庫、Grails
 2. 於application.yml修改資料庫設定
@@ -64,3 +58,9 @@ grails run-app
 | Mysql 5.7 | https://dev.mysql.com/doc/relnotes/mysql/5.7/en |
 | Materialize | http://materializecss.com/ |
 | Chart.js | http://www.chartjs.org/ |
+
+## 畫面
+![](https://imgur.com/iRMoHtz.png)
+![](https://imgur.com/KTn0AKQ.png)
+![](https://imgur.com/5elD6QR.png)
+![](https://imgur.com/ZUUNTBR.png)
