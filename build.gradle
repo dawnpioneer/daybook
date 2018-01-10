@@ -55,7 +55,6 @@ bootRun {
     addResources = true
 }
 
-
 assets {
     minifyJs = false
     minifyCss = false
