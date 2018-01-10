@@ -83,7 +83,7 @@ class DaybookController extends BaseController {
         def daybook = new Daybook(params)
         daybook.save flush: true, failOnError: true
 
-        redirect action: "show", id: daybook.id
+        redirect action: "index"
     }
 
     def edit() {
