@@ -52,7 +52,7 @@
 <script>
     $(document).ready(function() {
         datepickerValidate();
-        updateDaybookCategories(null, false);
+        updateDaybookCategories('${daybook?.daybookCategory?.id}', false);
         $("#comment").val('${daybook?.comment}');
     });
 
