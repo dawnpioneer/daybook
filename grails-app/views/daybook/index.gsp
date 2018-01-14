@@ -80,8 +80,8 @@
                     </thead>
 
                     <tbody>
-                    <tr>
                     <g:each in="${daybooks}" var="daybook">
+                    <tr>
                         <td>${daybook.daybookCategory?.category?.name}</td>
                         <td>${daybook.daybookCategory.name}</td>
                         <td>${daybook.title}</td>
@@ -101,7 +101,7 @@
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </g:link>
                         </td>
-                        </tr>
+                    </tr>
                     </g:each>
                     </tbody>
                 </table>
