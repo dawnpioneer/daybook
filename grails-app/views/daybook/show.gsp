@@ -57,7 +57,9 @@
 
         <div class="row">
             <div class="col s12">
-                <a href="/daybook" class="waves-effect btn a-button"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                <g:link action="index" class="waves-effect btn a-button" params="${session["params"]}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </g:link>
             </div>
         </div>
     </div>

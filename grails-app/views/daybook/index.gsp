@@ -74,8 +74,8 @@
                         <th width="20%">種類</th>
                         <th width="25%">名稱</th>
                         <th width="10%">金額</th>
-                        <th width="20%">記帳日期</th>
-                        <th width="15%">功能</th>
+                        <th width="18%">記帳日期</th>
+                        <th width="17%">功能</th>
                     </tr>
                     </thead>
 
