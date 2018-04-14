@@ -36,7 +36,7 @@
             </div>
 
             <div class="input-field col s12">
-                <textarea id="comment" name="comment" class="materialize-textarea" disabled></textarea>
+                <textarea id="comment" name="comment" class="materialize-textarea" disabled>${daybook.comment}</textarea>
                 <label for="comment">備註</label>
             </div>
 
@@ -65,6 +65,6 @@
 <g:render template="/shared/footer"/>
 <script>
     $(document).ready(function() {
-        $("#comment").val('${daybook?.comment}');
+        $('#comment').trigger('autoresize');
     });
 </script>
