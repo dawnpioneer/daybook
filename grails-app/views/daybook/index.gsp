@@ -4,7 +4,7 @@
     <div class="section center-align">
         <div class="row">
             <div class="col s12">
-                <h3>記帳本 - 列表</h3>
+                <h4>記帳本 - 列表</h4>
             </div>
         </div>
 
@@ -70,12 +70,12 @@
                 <table class="highlight centered">
                     <thead>
                     <tr>
-                        <th width="16%">支出 / 收入</th>
-                        <th width="16%">種類</th>
-                        <th width="16%">名稱</th>
-                        <th width="16%">金額</th>
-                        <th width="16%">記帳日期</th>
-                        <th width="20%">功能</th>
+                        <th width="10%">支出 / 收入</th>
+                        <th width="20%">種類</th>
+                        <th width="25%">名稱</th>
+                        <th width="10%">金額</th>
+                        <th width="20%">記帳日期</th>
+                        <th width="15%">功能</th>
                     </tr>
                     </thead>
 
@@ -84,7 +84,7 @@
                     <tr>
                         <td>${daybook.daybookCategory?.category?.name}</td>
                         <td>${daybook.daybookCategory.name}</td>
-                        <td>${daybook.title}</td>
+                        <td style="text-align: left;">${daybook.title}</td>
                         <td>${daybook.amount}</td>
                         <td><g:formatDate format="yyyy-MM-dd" date="${daybook.recordDate}"/></td>
                         <td>

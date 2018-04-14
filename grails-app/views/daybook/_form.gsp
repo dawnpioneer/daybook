@@ -4,7 +4,7 @@
     <div class="section center-align">
         <div class="row">
             <div class="col s12">
-                <h3>記帳本 - ${isEdit ? "修改" : "新建"}</h3>
+                <h4>記帳本 - ${isEdit ? "修改" : "新建"}</h4>
             </div>
         </div>
         <div class="row">

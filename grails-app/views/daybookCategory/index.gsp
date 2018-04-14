@@ -3,7 +3,7 @@
     <div class="section center-align">
         <div class="row">
             <div class="col s12">
-                <h3>記帳類別 - 列表</h3>
+                <h4>記帳類別 - 列表</h4>
             </div>
         </div>
 
