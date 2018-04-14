@@ -16,6 +16,7 @@ class DaybookController extends BaseController {
 
         params.max = params?.max ?: 10
         params.offset = params?.offset ?: 0
+        session["params"] = params // save query params for come back from create/update/delete pages
 
         def queryParams = [:]
 
@@ -83,7 +84,7 @@ class DaybookController extends BaseController {
         def daybook = new Daybook(params)
         daybook.save flush: true, failOnError: true
 
-        redirect action: "index"
+        redirect action: "index", params: session["params"]
     }
 
     def edit() {
@@ -102,7 +103,7 @@ class DaybookController extends BaseController {
         daybook.comment = params.comment
         daybook.save flush: true, failOnError: true
 
-        redirect action: "show", id: daybook.id
+        redirect action: "index", params: session["params"]
     }
 
     @Transactional
@@ -110,7 +111,7 @@ class DaybookController extends BaseController {
         def daybook = Daybook.findById(params.id)
         daybook.delete flush: true, failOnError: true
 
-        redirect action: "index", method: "GET"
+        redirect action: "index", params: session["params"]
     }
 
     def getDaybookCategories() {
