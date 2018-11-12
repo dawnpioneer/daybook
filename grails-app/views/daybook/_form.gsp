@@ -35,7 +35,7 @@
                                 type="date" class="datepicker" required>
                     </div>
                     <div class="input-field col s12">
-                        <textarea id="comment" name="comment" class="materialize-textarea">${daybook.comment}</textarea>
+                        <textarea id="comment" name="comment" class="materialize-textarea">${daybook?.comment}</textarea>
                         <label for="comment">備註</label>
                     </div>
                     <div class="col s12">
