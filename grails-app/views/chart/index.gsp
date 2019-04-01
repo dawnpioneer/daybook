@@ -53,9 +53,10 @@
         <div class="row">
             <div class="col m8 offset-m2 s12">
                 <g:each in="${checkboxTypeList}" var="typeMap">
-                    <input type="checkbox" class="filled-in" id="${typeMap.get("id")}" <g:if test="${typeMap.get("checked")}">checked</g:if>/>
-                    <label for="${typeMap.get("id")}" style="padding-left: 24px">${typeMap.get("name")}</label>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label for="${typeMap.get("id")}" style="padding-left: 24px">
+                            <input type="checkbox" class="filled-in" id="${typeMap.get("id")}" <g:if test="${typeMap.get("checked")}">checked</g:if>/>
+                            <span>${typeMap.get("name")}</span>
+                        </label>
                 </g:each>
             </div>
         </div>

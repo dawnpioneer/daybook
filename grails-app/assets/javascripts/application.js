@@ -1,35 +1,27 @@
 // ================================= Initial Settings - Start =================================
 $(document).ready(function(){
-    $('.button-collapse').sideNav();
-    $(".dropdown-button").dropdown({
-        belowOrigin : true
-    });
-    $('select').material_select();
+    $(".dropdown-trigger").dropdown();
+    $('select').formSelect();
+    $('.sidenav').sidenav();
 
     // date picker settings
-    $('.datepicker').pickadate({
-        selectMonths: true,// Creates a dropdown to control month
-        selectYears: 15,// Creates a dropdown of 15 years to control year
-        // The title label to use for the month nav buttons
-        labelMonthNext: '下個月',
-        labelMonthPrev: '上個月',
-        // The title label to use for the dropdown selectors
-        labelMonthSelect: '選取月',
-        labelYearSelect: '選取年',
-        // Months and weekdays
-        monthsFull: [ '一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月' ],
-        monthsShort: [ '1 /', '2 /', '3 /', '4 /', '5 /', '6 /', '7 /', '8 /', '9 /', '10 /', '11 /', '12 /' ],
-        weekdaysFull: [ '星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六' ],
-        weekdaysShort: [ '星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六' ],
-        // Materialize modified
-        weekdaysLetter: [ '日', '一', '二', '三', '四', '五', '六' ],
-        // Today and clear
-        today: '今天',
-        clear: '清除',
-        close: '關閉',
+    $('.datepicker').datepicker({
+        autoClose: true,
         // The format to show on the `input` element
         format: 'yyyy-mm-dd',
-        closeOnSelect: false // Close upon selecting a date,
+        closeOnSelect: false, // Close upon selecting a date,
+        i18n: {
+            cancel: '取消',
+            clear: '清除',
+            done: '確定',
+            previousMonth: '上個月',
+            nextMonth: '下個月',
+            months: [ '一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月' ],
+            monthsShort: [ '1 /', '2 /', '3 /', '4 /', '5 /', '6 /', '7 /', '8 /', '9 /', '10 /', '11 /', '12 /' ],
+            weekdays: [ '星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六' ],
+            weekdaysShort: [ '日', '一', '二', '三', '四', '五', '六' ],
+            weekdaysAbbrev: [ '日', '一', '二', '三', '四', '五', '六' ],
+        }
     });
 
     $('.scrollspy').scrollSpy({
@@ -60,26 +52,11 @@ function drawCharts(colorList, monthList, typeList, typeAmountList, typeAmountPe
     // init chart plugin service
     initChart();
 
-    // set scroll fire effect
-    var options = [
-        {selector: '#doughnut-chart', offset: 200, callback: function(el) {
-            Materialize.fadeInImage($(el));
-            drawChart(doughnutCtx, "doughnut", "支出項目圓形圖", typeList, typeAmountList, colorList, null, false,  false);
-        } },
-        {selector: '#doughnut-percent-chart', offset: 300, callback: function(el) {
-            Materialize.fadeInImage($(el));
-            drawChart(doughnutPercentCtx, "doughnut", "支出項目百分比圓形圖", typeList, typeAmountPercentList, colorList, null, false, false);
-        } },
-        {selector: '#bar-chart', offset: 300, callback: function(el) {
-            Materialize.fadeInImage($(el));
-            drawChart(barChartCtx, "bar", "支出項目長條圖", typeList, typeAmountList, colorList, "支出", true, true);
-        } },
-        {selector: '#line-chart', offset: 300, callback: function(el) {
-            Materialize.fadeInImage($(el));
-            drawChart(lineChartCtx, "line", "年度月別支出曲線圖", monthList, monthAmountList, colorList[0], "支出", false, false);
-        } }
-    ];
-    Materialize.scrollFire(options);
+    // draw charts
+    drawChart(doughnutCtx, "doughnut", "支出項目圓形圖", typeList, typeAmountList, colorList, null, false,  false);
+    drawChart(doughnutPercentCtx, "doughnut", "支出項目百分比圓形圖", typeList, typeAmountPercentList, colorList, null, false, false);
+    drawChart(barChartCtx, "bar", "支出項目長條圖", typeList, typeAmountList, colorList, "支出", true, true);
+    drawChart(lineChartCtx, "line", "年度月別支出曲線圖", monthList, monthAmountList, colorList[0], "支出", false, false);
 }
 
 /**
@@ -121,7 +98,8 @@ function drawChart(context, type, title, labelArray, dataArray, backgroundArray,
                         ticks : {
                             beginAtZero : beginAtZero
                         }
-                    }]
+                    }
+                ]
             }
         }
     });
@@ -252,9 +230,9 @@ function updateDaybookCategories(selectedValue, showAllOption) {
             if (selectedValue !== null && selectedValue !== '') {
                 daybookCategorySelect.val(selectedValue);
             }
-            daybookCategorySelect.material_select();
+            daybookCategorySelect.formSelect();
         });
     }
-    daybookCategorySelect.material_select();
+    daybookCategorySelect.formSelect();
 }
 // ================================= Select Value Change Extensions - End =================================

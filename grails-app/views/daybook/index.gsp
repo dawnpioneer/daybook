@@ -148,10 +148,10 @@
         $("[name=title]").val("");
         $("[name=amount]").val("");
 
-        ["year", "month", "category", "daybookCategory"].forEach(function(text) {
+        ["category", "daybookCategory"].forEach(function(text) {
             let selectObject =  $("[name="+text+"]");
             selectObject.val("ALL");
-            selectObject.material_select();
+            selectObject.formSelect();
         });
     }
 </script>

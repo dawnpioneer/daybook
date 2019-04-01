@@ -10,7 +10,21 @@ body {
     margin-bottom: 0;
 }
 
-/* Navbar */
+.btn {
+    padding: 0 30px;
+}
+
+.input-field {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.dropdown-content {
+    top: auto !important;
+    position: absolute;
+}
+
+    /* Navbar */
 nav ul a,nav .brand-logo {
     color: #444;
 }
