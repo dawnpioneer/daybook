@@ -1,9 +1,11 @@
 package daybook
 
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
 class ChartController extends BaseController {
 
+    @Secured('ROLE_USER')
     def index() {
         if (!params.year) {
             params.year = new Date().format("yyyy")
@@ -17,7 +19,10 @@ class ChartController extends BaseController {
         def recordDateYear = year
         def exceptTypeList = params.exceptTypeList as String // disable from front charts
 
-        def daybookByTypeList = getNativeSqlInstance().rows(getDaybookByTypeListSQL(month, exceptTypeList), [recordDate: recordDate, exceptTypeList: exceptTypeList])
+        def daybookByTypeList = getNativeSqlInstance().rows(
+                getDaybookByTypeListSQL(month, exceptTypeList),
+                [recordDate: recordDate, exceptTypeList: exceptTypeList, ownerId: getCurrentUser().id]
+        )
         def checkboxTypeList = [], typeStringList = [], typeAmountList = [], typeAmountPercentList = []
         def totalAmount = 0
 
@@ -29,7 +34,9 @@ class ChartController extends BaseController {
 
         // for checkbox
         def exceptIdList = exceptTypeList?.split(',')
-        def daybookByStaticTypeList = getNativeSqlInstance().rows(getStaticTypeListSQL(month), [recordDate: recordDate])
+        def daybookByStaticTypeList = getNativeSqlInstance().rows(
+                getStaticTypeListSQL(month), [recordDate: recordDate, ownerId: getCurrentUser().id]
+        )
         for (Object it : daybookByStaticTypeList) { // show all type from this month
             // composite checkbox data
             def typeMap = [:]
@@ -46,7 +53,9 @@ class ChartController extends BaseController {
 
         // get monthAmountList
         def monthAmountList = []
-        def daybookByMonthList = getNativeSqlInstance().rows(getMonthAmountList(), [recordDateYear: recordDateYear])
+        def daybookByMonthList = getNativeSqlInstance().rows(
+                getMonthAmountList(), [recordDateYear: recordDateYear, ownerId: getCurrentUser().id]
+        )
 
         daybookByMonthList.forEach {
             monthAmountList.add(it.totalAmount)
@@ -68,6 +77,7 @@ class ChartController extends BaseController {
 
     }
 
+    @Secured('ROLE_USER')
     def getDaybookByTypeListSQL(month, exceptTypeList) {
         def sql = """
          SELECT dc.id,
@@ -78,10 +88,12 @@ class ChartController extends BaseController {
                  FROM   daybook d 
                  WHERE  Date_format(d.record_date, '%Y%m') = :recordDate
                  AND d.daybook_category_id not in (${exceptTypeList ? exceptTypeList : 0})
-                 GROUP  BY d.daybook_category_id) dt 
+                 AND d.owner_id = :ownerId
+                GROUP  BY d.daybook_category_id) dt 
                 LEFT JOIN daybook_category dc 
                        ON dc.id = dt.daybook_category_id 
-                 WHERE dc.category != 'INCOME'
+                WHERE dc.category != 'INCOME'
+                AND dc.owner_id = :ownerId
          """
         // remove month query if only the year exist
         if (month == "ALL") {
@@ -91,6 +103,7 @@ class ChartController extends BaseController {
         sql
     }
 
+    @Secured('ROLE_USER')
     def getStaticTypeListSQL(month) {
         def sql = """
          SELECT dc.id,
@@ -98,10 +111,12 @@ class ChartController extends BaseController {
          FROM   (SELECT d.daybook_category_id
                  FROM   daybook d 
                  WHERE  Date_format(d.record_date, '%Y%m') = :recordDate
+                 AND d.owner_id = :ownerId
                  GROUP  BY d.daybook_category_id) dt 
                 LEFT JOIN daybook_category dc 
                        ON dc.id = dt.daybook_category_id 
-                 WHERE dc.category != 'INCOME'
+                WHERE dc.category != 'INCOME'
+                AND dc.owner_id = :ownerId
          """
         // remove month query if only the year exist
         if (month == "ALL") {
@@ -111,13 +126,16 @@ class ChartController extends BaseController {
         sql
     }
 
+    @Secured('ROLE_USER')
     def getMonthAmountList() {
         def sql = """
          SELECT Date_format(d.record_date, '%m') AS month, Sum(d.amount) totalAmount 
          FROM   daybook d 
          LEFT JOIN daybook_category dc on dc.id = d.daybook_category_id
          WHERE  Date_format(d.record_date, '%Y') = :recordDateYear
+         AND d.owner_id = :ownerId
          AND dc.category != 'INCOME'
+         AND dc.owner_id = :ownerId
          GROUP  BY month 
          ORDER  BY month 
          """

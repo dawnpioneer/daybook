@@ -1,5 +1,7 @@
 package daybook
 
+import grails.plugin.springsecurity.annotation.Secured
+
 class ApplicationController {
 
     def selectedMenu
@@ -8,6 +10,7 @@ class ApplicationController {
         this.selectedMenu = selectedMenu
     }
 
+    @Secured('ROLE_USER')
     def returnReference(reference) {
         if (!reference) {
             reference = new LinkedHashMap<>()

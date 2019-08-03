@@ -1,11 +1,14 @@
 package daybook
 
+import grails.plugin.springsecurity.SpringSecurityService
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 class DaybookController extends BaseController {
 
     static responseFormats = ['json', 'xml']
 
+    @Secured('ROLE_USER')
     def index() {
         if (!params.year) {
             params.year = new Date().format("yyyy")
@@ -46,6 +49,9 @@ class DaybookController extends BaseController {
             sql.append(" and d.amount >= :amount")
             queryParams.put("amount", params.amount as Integer)
         }
+
+        sql.append(" and d.owner >= :owner")
+        queryParams.put("owner", getCurrentUser())
         sql.append(" order by d.recordDate desc, d.id desc")
 
         def daybookList = Daybook.findAll(sql.toString(), queryParams)
@@ -68,54 +74,65 @@ class DaybookController extends BaseController {
         ]
     }
 
+    @Secured('ROLE_USER')
     def show() {
         if (params.id) {
-            [daybook: Daybook.get(params.id)]
+            [daybook: Daybook.findByIdAndOwner(params.id, getCurrentUser())]
         }
     }
 
+    @Secured('ROLE_USER')
     def create() {
         [defaultDate: new Date()]
     }
 
+    @Secured('ROLE_USER')
     @Transactional
     def save() {
         params.recordDate = new Date().parse('yyyy-MM-dd', params.recordDate as String) // Transfer string to date
+        params.user = getCurrentUser()
         def daybook = new Daybook(params)
         daybook.save flush: true, failOnError: true
 
         redirect action: "index", params: session["params"]
     }
 
+    @Secured('ROLE_USER')
     def edit() {
         if (params.id) {
-            [daybook: Daybook.get(params.id)]
+            [daybook: Daybook.findByIdAndOwner(params.id, getCurrentUser())]
         }
     }
 
+    @Secured('ROLE_USER')
     @Transactional
     def update() {
-        def daybook = Daybook.findById(params.id)
+        def daybook = Daybook.findByIdAndOwner(params.id, getCurrentUser())
         daybook.daybookCategory = DaybookCategory.findById(params.daybookCategory as Long)
         daybook.title = params.title
         daybook.amount = params.amount as Integer
         daybook.recordDate = new Date().parse('yyyy-MM-dd', params.recordDate as String)
         daybook.comment = params.comment
+        daybook.owner = getCurrentUser()
         daybook.save flush: true, failOnError: true
 
         redirect action: "index", params: session["params"]
     }
 
+    @Secured('ROLE_USER')
     @Transactional
     def delete() {
-        def daybook = Daybook.findById(params.id)
+        def daybook = Daybook.findByIdAndOwner(params.id, getCurrentUser())
         daybook.delete flush: true, failOnError: true
 
         redirect action: "index", params: session["params"]
     }
 
+    @Secured('ROLE_USER')
     def getDaybookCategories() {
-        def daybookCategories = params.category != "ALL" ? DaybookCategory.findAllByCategory(params.category) : DaybookCategory.findAll()
+        def daybookCategories = params.category != "ALL" ?
+                DaybookCategory.findAllByCategoryAndOwner(params.category, getCurrentUser()) :
+                DaybookCategory.findAllByOwner(getCurrentUser())
         daybookCategories.sort { it.id as Integer }
         respond daybookCategories
     }

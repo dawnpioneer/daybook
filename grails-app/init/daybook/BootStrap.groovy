@@ -5,6 +5,17 @@ class BootStrap {
     def init = { servletContext ->
         def createDefaultData = false
 
+        def adminRole = new Role(authority: 'ROLE_USER').save()
+
+        def testUser = new User(username: 'admin', password: '12345').save()
+
+        UserRole.create testUser, adminRole
+
+        UserRole.withSession {
+            it.flush()
+            it.clear()
+        }
+
         if (createDefaultData) {
             List<DaybookCategory> daybookCategoryList = []
 

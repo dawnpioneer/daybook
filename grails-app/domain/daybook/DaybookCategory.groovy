@@ -4,10 +4,9 @@ class DaybookCategory {
 
     String name
     Category category
-
-    // auto timestamp
-    Date dateCreated
-    Date lastUpdated
+    Date dateCreated // auto timestamp
+    Date lastUpdated // auto timestamp
+    User owner
 
     static mapping = {
         version false
