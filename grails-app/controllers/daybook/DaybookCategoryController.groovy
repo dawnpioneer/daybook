@@ -48,7 +48,7 @@ class DaybookCategoryController extends BaseController {
     @Secured('ROLE_USER')
     @Transactional
     def save() {
-        params.user = getCurrentUser()
+        params.owner = getCurrentUser()
         def daybookCategory = new DaybookCategory(params)
         daybookCategory.save flush: true, failOnError: true
 

@@ -90,7 +90,7 @@ class DaybookController extends BaseController {
     @Transactional
     def save() {
         params.recordDate = new Date().parse('yyyy-MM-dd', params.recordDate as String) // Transfer string to date
-        params.user = getCurrentUser()
+        params.owner = getCurrentUser()
         def daybook = new Daybook(params)
         daybook.save flush: true, failOnError: true
 
