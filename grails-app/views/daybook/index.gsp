@@ -44,11 +44,12 @@
                         <label>種類</label>
                     </div>
                     <div class="input-field col m2 s6">
-                        <input type="text" id="autocomplete-input" name="title" value="${params.title}" class="autocomplete"> <label
-                            for="autocomplete-input">搜尋名稱</label>
+                        <input type="text" id="autocomplete-input" name="title" value="${params.title}" class="autocomplete">
+                        <label for="autocomplete-input">搜尋名稱</label>
                     </div>
                     <div class="input-field col m2 s6">
-                        <input type="text" name="amount" value="${params.amount}"> <label>多少金額以上</label>
+                        <input type="text" id="amount" name="amount" value="${params.amount}">
+                        <label for="amount">多少金額以上</label>
                     </div>
                     <div class="input-field col m1 s4">
                         <button type="submit" class="waves-effect btn a-button">
