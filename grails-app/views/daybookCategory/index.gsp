@@ -1,4 +1,4 @@
-<g:render template="/shared/header"/>
+<g:render template="/shared/menu"/>
 <div class="container">
     <div class="section center-align">
         <div class="row">

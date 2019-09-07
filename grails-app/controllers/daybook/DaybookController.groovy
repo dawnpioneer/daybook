@@ -4,6 +4,7 @@ import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
+@Transactional(readOnly = true)
 class DaybookController extends BaseController {
 
     static responseFormats = ['json', 'xml']

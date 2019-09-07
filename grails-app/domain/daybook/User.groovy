@@ -18,6 +18,11 @@ class User implements Serializable {
 	boolean accountLocked
 	boolean passwordExpired
 
+	String email
+
+	Date dateCreated // auto timestamp
+	Date lastUpdated // auto timestamp
+
 	Set<Role> getAuthorities() {
 		(UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
 	}
@@ -25,9 +30,12 @@ class User implements Serializable {
 	static constraints = {
 		password blank: false, password: true
 		username blank: false, unique: true
+		email blank: false, unique: true
 	}
 
 	static mapping = {
 		password column: '`password`'
+		email email: true
+
 	}
 }

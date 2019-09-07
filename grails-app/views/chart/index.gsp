@@ -1,5 +1,5 @@
 <%@ page defaultCodec="none" %>
-<g:render template="/shared/header"/>
+<g:render template="/shared/menu"/>
 <!--Import Chart.js-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.0/Chart.bundle.min.js"></script>
 

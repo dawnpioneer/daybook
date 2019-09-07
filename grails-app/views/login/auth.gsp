@@ -1,58 +1,36 @@
-<html>
-
-<head>
-    <title>
-        <g:message code='springSecurity.login.title' />
-    </title>
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8" />
-    <!-- Font Awesome -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- Import main.css -->
-    <asset:stylesheet src="application.css"/>
-
-    <!--Import jQuery before materialize.js-->
-    <asset:javascript src="jquery-3.2.1.min.js"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-    <style type="text/css" media="screen">
-    /* Login Template */
-    body {
-        background: #f5f5f5;
-    }
-    h5 {
-        font-weight: 400;
-    }
-    .container {
-        margin-top: 230px;
-        width: 400px;
-    }
-    .tabs .indicator {
-        background-color: #e0f2f1;
-        height: 60px;
-        opacity: 0.3;
-    }
-    .form-container {
-        padding: 40px;
-        padding-top: 10px;
-    }
-    .confirmation-tabs-btn {
-        position: absolute;
-    }
-    /* Toast */
-    #toast-container {
-        top: auto !important;
-        right: auto !important;
-        bottom: 5%;
-        left: 45%;
-    }
-    </style>
-</head>
-<body>
+<g:render template="/shared/header"/>
+<style type="text/css" media="screen">
+/* Login Template */
+body {
+    background: #f5f5f5;
+}
+h5 {
+    font-weight: 400;
+}
+.container {
+    margin-top: 230px;
+    width: 400px;
+}
+.tabs .indicator {
+    background-color: #e0f2f1;
+    height: 60px;
+    opacity: 0.3;
+}
+.form-container {
+    padding: 40px;
+    padding-top: 10px;
+}
+.confirmation-tabs-btn {
+    position: absolute;
+}
+/* Toast */
+#toast-container {
+    top: auto !important;
+    right: auto !important;
+    bottom: 5%;
+    left: 45%;
+}
+</style>
 <div class="container white z-depth-2">
     <div id="login" class="col s12">
         <form action="${postUrl ?: '/login/authenticate'}" method="POST" id="loginForm" class="col s12" autocomplete="off">
@@ -71,23 +49,32 @@
                     </div>
                 </div>
                 <g:if test='${flash.message}'>
-                    <div class="error-message" style="color: red">帳號或密碼錯誤</div>
+                <div class="row">
+                    <div class="input-field col s12">
+                            <div class="error-message" style="color: red">帳號或密碼錯誤</div>
+                    </div>
+                </div>
                 </g:if>
-                <br>
-                <center>
-                    <button class="btn waves-effect waves-light teal" type="submit" name="action">登入</button>
-                </center>
+                <div class="row">
+                    <div class="col s12">
+                        <label for="rememberMe">
+                            <input type="checkbox" class="filled-in" id="rememberMe" name="remember-me">
+                            <span>記住我</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s4">
+                        <a href="/user/create" class="waves-effect btn">註冊 </a>
+                    </div>
+                    <div class="input-field col s4">
+                    </div>
+                    <div class="input-field col s4">
+                        <button class="btn waves-effect waves-light teal" type="submit" name="action">登入</button>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function () {
-        var gender = '${comment?.gender}';
-        if (gender.length > 0) {
-            $(':radio[value=' + gender + ']').prop('checked', true);
-        }
-    });
-</script>
-</body>
-</html>
+<g:render template="/shared/footer"/>

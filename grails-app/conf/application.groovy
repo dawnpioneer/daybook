@@ -1,9 +1,11 @@
-
-
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'daybook.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'daybook.UserRole'
 grails.plugin.springsecurity.authority.className = 'daybook.Role'
+grails.plugin.springsecurity.rememberMe.cookieName = 'daybook_remember_me'
+grails.plugin.springsecurity.rememberMe.key = 'daybookEndcodedKey'
+grails.plugin.springsecurity.rememberMe.tokenValiditySeconds = 2678400 // 31days
+
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	[pattern: '/',               access: ['permitAll']],
 	[pattern: '/error',          access: ['permitAll']],

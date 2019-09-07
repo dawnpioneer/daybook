@@ -24,7 +24,11 @@ body {
     position: absolute;
 }
 
-    /* Navbar */
+.errors {
+    color: red;
+}
+
+/* Navbar */
 nav ul a,nav .brand-logo {
     color: #444;
 }
