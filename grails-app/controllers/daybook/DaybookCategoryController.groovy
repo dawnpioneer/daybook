@@ -23,7 +23,7 @@ class DaybookCategoryController extends BaseController {
             queryParams.put("name", "%${params.name}%")
         }
 
-        sql.append(" and dc.owner >= :owner")
+        sql.append(" and dc.owner = :owner")
         queryParams.put("owner", getCurrentUser())
         sql.append(" order by dc.id")
 

@@ -51,7 +51,7 @@ class DaybookController extends BaseController {
             queryParams.put("amount", params.amount as Integer)
         }
 
-        sql.append(" and d.owner >= :owner")
+        sql.append(" and d.owner = :owner")
         queryParams.put("owner", getCurrentUser())
         sql.append(" order by d.recordDate desc, d.id desc")
 

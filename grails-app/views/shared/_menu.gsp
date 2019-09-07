@@ -40,4 +40,5 @@
     <li><a href="/daybook">記帳本</a></li>
     <li><a href="/daybookCategory">記帳類別</a></li>
     <li><a href="/chart">統計圖</a></li>
+    <li><g:link controller='secure' action="logout">登出</g:link></li>
 </ul>
