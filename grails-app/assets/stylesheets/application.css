@@ -98,10 +98,16 @@ main {
 }
 
 footer {
+    padding-top: 0px !important;
     position: fixed;
     width: 100%;
     bottom: 0;
     z-index: 1;
+}
+
+.footer-copyright {
+    margin-left: 10px;
+    min-height: 0px !important;
 }
 
 /* Paginate Style */

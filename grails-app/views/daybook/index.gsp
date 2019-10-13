@@ -120,7 +120,7 @@
         <div class="row no-margin-bottom">
             <div class="col s12 left-align">
                 <hr>
-                累計總支出為 ${totalAmount}元
+                累計總收支為 ${totalAmount}元
             </div>
         </div>
     </div>

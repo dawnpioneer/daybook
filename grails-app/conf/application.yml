@@ -101,7 +101,7 @@ dataSource:
     driverClassName: com.mysql.jdbc.Driver
     dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     username: root
-    password: 123456
+    password: google13794628
 
 environments:
     development:
@@ -112,11 +112,11 @@ environments:
     test:
         dataSource:
             dbCreate: none
-            url: jdbc:mysql://localhost:3306/daybook?useUnicode=true&characterEncoding=UTF-8
+            url: jdbc:mysql://34.68.4.97:3306/daybook?useUnicode=true&characterEncoding=UTF-8
     production:
         dataSource:
             dbCreate: none
-            url: jdbc:mysql://localhost:3306/daybook?useUnicode=true&characterEncoding=UTF-8
+            url: jdbc:mysql://34.68.4.97:3306/daybook?useUnicode=true&characterEncoding=UTF-8
             properties:
                 jmxEnabled: true
                 initialSize: 5

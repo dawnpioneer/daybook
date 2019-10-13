@@ -30,6 +30,14 @@ h5 {
     bottom: 5%;
     left: 45%;
 }
+/* mobile */
+@media only screen and (max-width : 600px) {
+    .container {
+        margin-top: 0px;
+        width: 100%;
+        min-height: 100vh;
+    }
+}
 </style>
 <div class="container white z-depth-2">
     <div id="login" class="col s12">
