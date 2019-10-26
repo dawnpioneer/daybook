@@ -5,6 +5,7 @@
         <a id="logo-container" href="/" class="brand-logo">Daybook</a>
         <a href="#" data-target="nav-mobile" class="sidenav-trigger" style="color:black;"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
+            <li><a href="/news"><i class="fa fa-bullhorn" aria-hidden="true"></i> 更新歷程</a></li>
             <li>
                 <a class="dropdown-trigger" href="#" data-target="dropdown-daybook">
                     <i class="fa fa-sticky-note" aria-hidden="true"></i> 記帳本
