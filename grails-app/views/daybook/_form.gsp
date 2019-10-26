@@ -43,7 +43,7 @@
                             <i class="fa fa-save" aria-hidden="true"></i>
                         </button>
                         <a href="/daybook" class="waves-effect btn a-button"><i class="fa fa-arrow-left" aria-hidden="true"></i> </a>
-                </div>
+                    </div>
                 </div>
             </g:form>
         </div>

@@ -15,7 +15,12 @@
 
             <div class="input-field col s12">
                 <input id="name" disabled value="${daybookCategory.name}" type="text" class="validate">
-                <label for="name">種類</label>
+                <label for="name">名稱</label>
+            </div>
+
+            <div class="input-field col s12">
+                <input id="sortNum" disabled value="${daybookCategory.sortNum}" type="text" class="validate">
+                <label for="name">排序</label>
             </div>
 
             <div class="input-field col s12">
@@ -35,8 +40,9 @@
 
         <div class="row">
             <div class="col s12">
-                <a href="/daybookCategory" class="waves-effect btn a-button"><i class="fa fa-arrow-left"
-                                                                                aria-hidden="true"></i></a>
+                <g:link action="index" class="waves-effect btn a-button" params="${session["params"]}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </g:link>
             </div>
         </div>
     </div>

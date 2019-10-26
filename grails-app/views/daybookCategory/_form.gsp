@@ -20,6 +20,10 @@
                         <input id="name" type="text" name="name" value="${daybookCategory?.name}" class="validate" required>
                         <label for="name">名稱</label>
                     </div>
+                    <div class="input-field col s12">
+                        <input id="sortNum" type="number" name="sortNum" value="${daybookCategory?.sortNum}" class="validate" required>
+                        <label for="sortNum">排序</label>
+                    </div>
                     <div class="col s12">
                         <button type="submit" class="waves-effect waves-light btn a-button">
                             <i class="fa fa-save" aria-hidden="true"></i>

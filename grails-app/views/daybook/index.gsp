@@ -92,11 +92,9 @@
                             <g:link action="show" id="${daybook.id}" class="a-fa">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                             </g:link>
-                        &nbsp;
                             <g:link action="edit" id="${daybook.id}" class="a-fa">
                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                             </g:link>
-                        &nbsp;
                             <g:link action="delete" id="${daybook.id}" onclick="return confirm('確定要刪除嗎？')"
                                     class="a-fa">
                                 <i class="fa fa-times" aria-hidden="true"></i>
@@ -148,7 +146,6 @@
     function clear() {
         $("[name=title]").val("");
         $("[name=amount]").val("");
-
         ["category", "daybookCategory"].forEach(function(text) {
             let selectObject =  $("[name="+text+"]");
             selectObject.val("ALL");

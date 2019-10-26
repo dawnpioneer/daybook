@@ -132,9 +132,8 @@ class DaybookController extends BaseController {
     @Secured('ROLE_USER')
     def getDaybookCategories() {
         def daybookCategories = params.category != "ALL" ?
-                DaybookCategory.findAllByCategoryAndOwner(params.category, getCurrentUser()) :
+                DaybookCategory.findAllByCategoryAndOwner(params.category, getCurrentUser(), [sort: "sortNum"]) :
                 DaybookCategory.findAllByOwner(getCurrentUser())
-        daybookCategories.sort { it.id as Integer }
         respond daybookCategories
     }
 

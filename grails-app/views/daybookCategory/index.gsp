@@ -1,3 +1,4 @@
+<%@ page import="daybook.DaybookCategory" %>
 <g:render template="/shared/menu"/>
 <div class="container">
     <div class="section center-align">
@@ -10,20 +11,31 @@
         <div class="row">
             <g:form controller="daybookCategory" action="index" class="col s12">
                 <div class="row">
-                    <div class="input-field col m9 s6">
+                    <div class="input-field select col m2 s4">
+                        <g:select name='category'
+                                  from='${DaybookCategory.CategorySelection}'
+                                  value="${params.category}"
+                                  optionValue="name"
+                                  class="form-control"/>
+                        <label>支出 / 收入</label>
+                    </div>
+                    <div class="input-field col m6 s8">
                         <input type="text" id="autocomplete-input" name="name" value="${params.name}" class="autocomplete"> <label
                             for="autocomplete-input">搜尋名稱</label>
                     </div>
-                    <div class="input-field col m1 s4">
+                    <div class="input-field col m1 s3">
                         <button type="submit" class="waves-effect btn a-button">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
                     </div>
-                    <div class="input-field col m1 s4">
+                    <div class="input-field col m1 s3">
                         <a href="javascript:clear();" class="waves-effect btn a-button"><i class="fa fa-undo" aria-hidden="true"></i> </a>
                     </div>
-                    <div class="input-field col m1 s4">
+                    <div class="input-field col m1 s3">
                         <a href="/daybookCategory/create" class="waves-effect waves-light btn"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="input-field col m1 s3">
+                        <a href="/daybookCategory/sort" class="waves-effect waves-light btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </g:form>
@@ -49,11 +61,9 @@
                                 <g:link action="show" id="${daybookCategory.id}" class="a-fa">
                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                 </g:link>
-                            &nbsp;
                                 <g:link action="edit" id="${daybookCategory.id}" class="a-fa">
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                 </g:link>
-                            &nbsp;
                                 <g:link action="delete" id="${daybookCategory.id}" onclick="return confirm('確定要刪除嗎？')"
                                         class="a-fa">
                                     <i class="fa fa-times" aria-hidden="true"></i>
@@ -79,5 +89,10 @@
 <script>
     function clear() {
         $("[name=name]").val("");
+        ["category", "daybookCategory"].forEach(function(text) {
+            let selectObject =  $("[name="+text+"]");
+            selectObject.val("ALL");
+            selectObject.formSelect();
+        });
     }
 </script>

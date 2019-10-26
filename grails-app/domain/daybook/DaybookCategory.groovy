@@ -7,9 +7,11 @@ class DaybookCategory {
     Date dateCreated // auto timestamp
     Date lastUpdated // auto timestamp
     User owner
+    int sortNum
 
     static mapping = {
         version false
+        sortNum defaultValue: 0
     }
 
     static constraints = {
