@@ -135,14 +135,6 @@
         updateDaybookCategories(null , true);
     });
 
-    $("[name=year]").change(function () {
-        if ($("[name=year]").val() === "ALL") {
-            $("[name=month]").prop('disabled', 'disabled');
-        } else {
-            $("[name=month]").prop('disabled', false);
-        }
-    });
-
     function clear() {
         $("[name=title]").val("");
         $("[name=amount]").val("");
