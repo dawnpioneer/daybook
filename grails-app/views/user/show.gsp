@@ -1,31 +1,50 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'user.label', default: 'User')}" />
-        <title><g:message code="default.show.label" args="[entityName]" /></title>
-    </head>
-    <body>
-        <a href="#show-user" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
+<g:render template="/shared/menu"/>
+<div class="container">
+    <div class="section center-align">
+        <div class="row">
+            <div class="col s12">
+                <h4>使用者 - 檢視</h4>
+            </div>
         </div>
-        <div id="show-user" class="content scaffold-show" role="main">
-            <h1><g:message code="default.show.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-            <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <f:display bean="user" />
-            <g:form resource="${this.user}" method="DELETE">
-                <fieldset class="buttons">
-                    <g:link class="edit" action="edit" resource="${this.user}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                    <input class="delete" type="submit" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-                </fieldset>
-            </g:form>
+
+        <div class="row view">
+            <div class="input-field col s12">
+                <input id="username" disabled value="${user.username}" type="text" class="validate">
+                <label for="username">使用者名稱</label>
+            </div>
+
+            <div class="input-field col s12">
+                <input id="email" disabled value="${user.email}" type="text" class="validate">
+                <label for="email">Email</label>
+            </div>
+
+            <div class="input-field col s12">
+                <input id="dateCreated" disabled
+                       value="<g:formatDate format="yyyy-MM-dd HH:mm:ss" date="${user.dateCreated}"/>"
+                       type="text" class="validate">
+                <label for="dateCreated">建立日期</label>
+            </div>
+
+            <div class="input-field col s12">
+                <input id="lastUpdated" disabled
+                       value="<g:formatDate format="yyyy-MM-dd HH:mm:ss" date="${user.lastUpdated}"/>"
+                       type="text" class="validate">
+                <label for="lastUpdated">編輯日期</label>
+            </div>
         </div>
-    </body>
-</html>
+
+        <div class="row">
+            <div class="col s12">
+                <g:link action="edit" id="${user.id}" class="waves-effect waves-light btn a-button">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </g:link>
+            </div>
+        </div>
+    </div>
+</div>
+<g:render template="/shared/footer"/>
+<script>
+    $(document).ready(function() {
+        $('#comment').trigger('autoresize');
+    });
+</script>
