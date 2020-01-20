@@ -34,6 +34,10 @@ body {
     color: red;
 }
 
+img {
+    max-width: 100%;
+}
+
 /* Navbar */
 nav ul a,nav .brand-logo {
     color: #444;
